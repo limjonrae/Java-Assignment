@@ -8,8 +8,8 @@ import javax.swing.SwingConstants;
  *
  * @author theness_
  */
-class technicianPage extends JFrame {
-    public technicianPage() {
+class TechPage extends JFrame {
+    public TechPage() {
         setTitle("Technician Page");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(400, 300);
