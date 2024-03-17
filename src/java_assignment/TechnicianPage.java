@@ -6,7 +6,7 @@ import java.awt.event.*;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
-
+    
 public class TechnicianPage extends JFrame {
     private JPanel panel;
     private JButton viewassignedtasksButton;
@@ -44,7 +44,7 @@ public TechnicianPage() {
                     // Show error message if reading feedbacks fails
                     JOptionPane.showMessageDialog(TechnicianPage.this, "Error reading feedbacks.");
                     return;
-                }
+}
                 // Display feedbacks
                 displayFeedbacks(feedbacks);
             }
