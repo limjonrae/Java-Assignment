@@ -1,5 +1,5 @@
-// Importing necessary packages
 package java_assignment;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;

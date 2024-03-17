@@ -1,10 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
- */
 package java_assignment;
-
-import java_assignment.AdminPage;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -213,7 +207,7 @@ class LoginPage extends JFrame {
                                 new UserPage(); // Opening UserPage
                                 break;
                             case "Technician":
-                                new technicianPage(); // Opening TechnicianPage
+                                new TechnicianPage(); // Opening TechnicianPage
                                 break;
                             default:
                                 break;
