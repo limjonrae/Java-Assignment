@@ -207,7 +207,7 @@ class LoginPage extends JFrame {
                                 new UserPage(); // Opening UserPage
                                 break;
                             case "Technician":
-                                new TechPage(); // Opening TechnicianPage
+                                new TechnicianPage(); // Opening TechnicianPage
                                 break;
                             default:
                                 break;
