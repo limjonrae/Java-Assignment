@@ -9,7 +9,7 @@ public class Java_Assignment extends JFrame {
     private JPanel panel; // Panel to hold buttons
     private JButton registerButton; // Button to navigate to registration page
     private JButton loginButton; // Button to navigate to login page
-
+    
     public Java_Assignment() {
         setTitle("Welcome to APU"); // Set window title
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Close application on window close
@@ -30,7 +30,7 @@ public class Java_Assignment extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 dispose(); // Close current window
                 new RegistrationPage(); // Open registration page
-            }
+}
         });
 
         // ActionListener for login button

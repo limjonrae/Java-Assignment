@@ -6,7 +6,7 @@ import java.awt.event.*;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
-
+    
 public class AdminPage extends JFrame {
     private JPanel panel;
     private JButton viewFeedbacksButton;
@@ -44,7 +44,7 @@ public class AdminPage extends JFrame {
                     // Show error message if reading feedbacks fails
                     JOptionPane.showMessageDialog(AdminPage.this, "Error reading feedbacks.");
                     return;
-                }
+}
                 // Display feedbacks
                 displayFeedbacks(feedbacks);
             }

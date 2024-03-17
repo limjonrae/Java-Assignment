@@ -5,7 +5,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
 import java.util.ArrayList;
-
+    
 public class UserPage extends JFrame {
     private JPanel panel;
     private JButton makeBookingButton;
@@ -34,7 +34,7 @@ public class UserPage extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 dispose();
                 new BookingPage();
-            }
+}
         });
 
         feedbackButton.addActionListener(new ActionListener() {
