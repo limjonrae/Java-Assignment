@@ -47,6 +47,8 @@ public TechnicianPage() {
             public void actionPerformed(ActionEvent e) {
                  // Display message for technician management
                 JOptionPane.showMessageDialog(TechnicianPage.this, "Update Service Status displayed!");
+                dispose();
+                new service_status();
             }
         });
 
@@ -165,4 +167,47 @@ public TechnicianPage() {
     public static void main(String[] args) {
         new TechnicianPage();
     }
+    
+    class service_status extends JFrame {
+        private JComboBox<String> StatusDropdown; // Dropdown for selecting technician's status
+        private JButton updateButton;
+        
+        
+        // Constructor for Service Status Page
+    public service_status() {
+        setTitle("Update Service Status"); // Set window title
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // Close window on dispose
+        setSize(400, 350); // Set window size
+        setLocationRelativeTo(null); // Center window on screen
+
+        JPanel panel = new JPanel(new GridLayout(6, 2, 10, 10)); // Create panel with GridLayout
+
+         // Components for update service status page
+        JLabel StatusLabel = new JLabel("Status: ");
+        String[] Status = {"Busy", "Free", "On Leave"};
+        StatusDropdown = new JComboBox<>(Status);
+        updateButton = new JButton("OK");
+
+        // ActionListener for register button
+        updateButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                String Status = (String) StatusDropdown.getSelectedItem();
+                JOptionPane.showMessageDialog(null, "Status updated!");
+                dispose();
+                new TechnicianPage();
+            }
+        });
+        setVisible(true); // Making the frame visible
+    
+    
+        panel.add(StatusLabel);
+        panel.add(StatusDropdown);
+        panel.add(updateButton);
+ 
+        add(panel); // Add panel to frame
+        setVisible(true); // Make frame visible
+    }
+   
+    }
 }
+

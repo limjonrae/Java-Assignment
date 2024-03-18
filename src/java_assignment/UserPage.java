@@ -10,8 +10,9 @@ public class UserPage extends JFrame {
     private JPanel panel;
     private JButton makeBookingButton;
     private JButton feedbackButton;
-    private JButton logoutButton;
     private JButton orderStatusButton;
+    private JButton logoutButton;
+    
 
     public UserPage() {
         setTitle("User Page");

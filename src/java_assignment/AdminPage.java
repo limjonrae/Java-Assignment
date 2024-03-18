@@ -45,6 +45,8 @@ public class AdminPage extends JFrame {
             public void actionPerformed(ActionEvent e) {
                  // Display message for technician management
                 JOptionPane.showMessageDialog(AdminPage.this, "Technician Management displayed!");
+                dispose(); // Close current window
+                new TechManagement();
             }
         });
 
@@ -155,8 +157,48 @@ public class AdminPage extends JFrame {
         new AdminPage();
     }
     
+    public class TechManagement extends JFrame {
+    private JTextArea TechDataTextArea;
+
+    public TechManagement() {
+        setTitle("Technician Management");
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        setSize(500, 300);
+        setLocationRelativeTo(null);
+
+        TechDataTextArea = new JTextArea();
+        TechDataTextArea.setEditable(false);
+
+        JScrollPane scrollPane = new JScrollPane(TechDataTextArea);
+        add(scrollPane);
+
+        displayTechData();
+
+        setVisible(true);
+    }
+
+    private void displayTechData() {
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader("user_database.txt"));
+            StringBuilder technicianData = new StringBuilder();
+
+            String line;
+            while ((line = reader.readLine()) != null) {
+                if (line.contains("Technician")) {
+                    technicianData.append(line).append("\n");
+                }
+            }
+            
+            TechDataTextArea.setText(technicianData.toString());
+            reader.close();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        }
+    }
+    
     class ViewFeedback extends JFrame {
-    private JTextArea orderStatusTextArea;
+    private JTextArea ViewFeedbackTextArea;
 
     public ViewFeedback() {
         setTitle("Order Status");
@@ -164,10 +206,10 @@ public class AdminPage extends JFrame {
         setSize(500, 300);
         setLocationRelativeTo(null);
 
-        orderStatusTextArea = new JTextArea();
-        orderStatusTextArea.setEditable(false);
+        ViewFeedbackTextArea = new JTextArea();
+        ViewFeedbackTextArea.setEditable(false);
 
-        JScrollPane scrollPane = new JScrollPane(orderStatusTextArea);
+        JScrollPane scrollPane = new JScrollPane(ViewFeedbackTextArea);
         add(scrollPane);
 
         displayFeedbackData();
@@ -179,11 +221,11 @@ public class AdminPage extends JFrame {
         try {
             BufferedReader reader = new BufferedReader(new FileReader("feedbacks.txt"));
             String line;
-            StringBuilder bookingData = new StringBuilder();
+            StringBuilder feedbackData = new StringBuilder();
             while ((line = reader.readLine()) != null) {
-                bookingData.append(line).append("\n");
+                feedbackData.append(line).append("\n");
             }
-            orderStatusTextArea.setText(bookingData.toString());
+            ViewFeedbackTextArea.setText(feedbackData.toString());
             reader.close();
         } catch (IOException ex) {
             ex.printStackTrace();
