@@ -26,7 +26,7 @@ public class UserPage extends JFrame {
         gbc.insets = new Insets(10, 10, 10, 10);
 
         makeBookingButton = new JButton("Make Booking");
-        feedbackButton = new JButton("View Feedback");
+        feedbackButton = new JButton("Write Feedback");
         orderStatusButton = new JButton("View Order Status");
         logoutButton = new JButton("Logout");
 

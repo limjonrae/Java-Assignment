@@ -1,4 +1,0 @@
-Name: Larry
-Phone Number: 2020
-Assigned Task: fix aircond
-

@@ -38,17 +38,7 @@ public TechnicianPage() {
         viewassignedtasksButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 // Initialize feedbacks list
-                assignedtasks = new ArrayList<>();
-                try {
-                    // Attempt to read feedbacks from file
-                    assignedtasks = getAssignedTasksFromFile();
-                } catch (IOException ex) {
-                    // Show error message if reading feedbacks fails
-                    JOptionPane.showMessageDialog(TechnicianPage.this, "Error reading feedbacks.");
-                    return;
-}
-                // Display feedbacks
-                displayAssignedTasks(assignedtasks);
+                new OrderStatusPage();
             }
         });
 

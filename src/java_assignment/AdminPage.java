@@ -36,17 +36,7 @@ public class AdminPage extends JFrame {
         viewFeedbacksButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 // Initialize feedbacks list
-                feedbacks = new ArrayList<>();
-                try {
-                    // Attempt to read feedbacks from file
-                    feedbacks = getFeedbacksFromFile();
-                } catch (IOException ex) {
-                    // Show error message if reading feedbacks fails
-                    JOptionPane.showMessageDialog(AdminPage.this, "Error reading feedbacks.");
-                    return;
-}
-                // Display feedbacks
-                displayFeedbacks(feedbacks);
+                new ViewFeedback();
             }
         });
 
@@ -159,9 +149,45 @@ public class AdminPage extends JFrame {
             return feedback;
         }
     }
-
+    
     // Main method for testing
     public static void main(String[] args) {
         new AdminPage();
     }
+    
+    class ViewFeedback extends JFrame {
+    private JTextArea orderStatusTextArea;
+
+    public ViewFeedback() {
+        setTitle("Order Status");
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        setSize(500, 300);
+        setLocationRelativeTo(null);
+
+        orderStatusTextArea = new JTextArea();
+        orderStatusTextArea.setEditable(false);
+
+        JScrollPane scrollPane = new JScrollPane(orderStatusTextArea);
+        add(scrollPane);
+
+        displayFeedbackData();
+
+        setVisible(true);
+    }
+    
+    private void displayFeedbackData() {
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader("feedbacks.txt"));
+            String line;
+            StringBuilder bookingData = new StringBuilder();
+            while ((line = reader.readLine()) != null) {
+                bookingData.append(line).append("\n");
+            }
+            orderStatusTextArea.setText(bookingData.toString());
+            reader.close();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
+}
 }
