@@ -13,7 +13,7 @@ public class TechnicianPage extends JFrame {
     private JButton updateservicestatusButton;
     private JButton viewservicehistoryButton;
     private JButton logoutButton;
-    private List<Feedback> feedbacks;
+    private List<AssignedTask> assignedtasks;
 
 public TechnicianPage() {
         setTitle("Technician Page");
@@ -36,17 +36,17 @@ public TechnicianPage() {
         viewassignedtasksButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 // Initialize feedbacks list
-                feedbacks = new ArrayList<>();
+                assignedtasks = new ArrayList<>();
                 try {
                     // Attempt to read feedbacks from file
-                    feedbacks = getFeedbacksFromFile();
+                    assignedtasks = getAssignedTasksFromFile();
                 } catch (IOException ex) {
                     // Show error message if reading feedbacks fails
                     JOptionPane.showMessageDialog(TechnicianPage.this, "Error reading feedbacks.");
                     return;
 }
                 // Display feedbacks
-                displayFeedbacks(feedbacks);
+                displayAssignedTasks(assignedtasks);
             }
         });
 
@@ -85,23 +85,23 @@ public TechnicianPage() {
     }
 
     // Method to read feedbacks from file and parse them into a list
-    private List<Feedback> getFeedbacksFromFile() throws IOException {
-        List<Feedback> feedbacks = new ArrayList<>();
-        try (BufferedReader reader = new BufferedReader(new FileReader("feedbacks.txt"))) {
+    private List<AssignedTask> getAssignedTasksFromFile() throws IOException {
+        List<AssignedTask> assignedtasks = new ArrayList<>();
+        try (BufferedReader reader = new BufferedReader(new FileReader("assigned_tasks.txt"))) {
             String line;
             String name = null;
             String phoneNumber = null;
-            StringBuilder feedback = new StringBuilder();
+            StringBuilder assignedtask = new StringBuilder();
             while ((line = reader.readLine()) != null) {
                 // Check if line is empty, indicating the end of a feedback entry
                 if (line.isEmpty()) {
                      // If name, phone number, and feedback are all not null and feedback content is not empty, add feedback to the list
-                    if (name != null && phoneNumber != null && !feedback.toString().isEmpty()) {
-                        feedbacks.add(new Feedback(name, phoneNumber, feedback.toString()));
+                    if (name != null && phoneNumber != null && !assignedtask.toString().isEmpty()) {
+                        assignedtasks.add(new AssignedTask(name, phoneNumber, assignedtask.toString()));
                          // Reset variables for the next feedback entry
                         name = null;
                         phoneNumber = null;
-                        feedback = new StringBuilder();
+                        assignedtask = new StringBuilder();
                     }
                 } else {
                     // Parse the line and assign to corresponding variables
@@ -110,41 +110,41 @@ public TechnicianPage() {
                     } else if (phoneNumber == null) {
                         phoneNumber = line;
                     } else {
-                        feedback.append(line).append("\n");
+                        assignedtask.append(line).append("\n");
                     }
                 }
             }
             // Add the last feedback entry if it exists
-            if (name != null && phoneNumber != null && !feedback.toString().isEmpty()) {
-                feedbacks.add(new Feedback(name, phoneNumber, feedback.toString()));
+            if (name != null && phoneNumber != null && !assignedtask.toString().isEmpty()) {
+                assignedtasks.add(new AssignedTask(name, phoneNumber, assignedtask.toString()));
             }
         }
-        return feedbacks;
+        return assignedtasks;
     }
 
     // Method to display feedbacks using a dialog window
-    private void displayFeedbacks(List<Feedback> feedbacks) {
-        StringBuilder feedbackString = new StringBuilder();
+    private void displayAssignedTasks(List<AssignedTask> assignedtasks) {
+        StringBuilder AssignedTaskString = new StringBuilder();
          // Construct a string containing details of each feedback
-        for (Feedback feedback : feedbacks) {
-            feedbackString.append("Name: ").append(feedback.getName()).append("\n");
-            feedbackString.append("Phone Number: ").append(feedback.getPhoneNumber()).append("\n");
-            feedbackString.append("Feedback: ").append(feedback.getFeedback()).append("\n\n");
+        for (AssignedTask assignedtask: assignedtasks) {
+            AssignedTaskString.append("Name: ").append(assignedtask.getName()).append("\n");
+            AssignedTaskString.append("Phone Number: ").append(assignedtask.getPhoneNumber()).append("\n");
+            AssignedTaskString.append("Assigned Task: ").append(assignedtask.getAssignedTask()).append("\n\n");
         }
         // Show the feedbacks in a dialog window
-        JOptionPane.showMessageDialog(this, feedbackString.toString());
+        JOptionPane.showMessageDialog(this, AssignedTaskString.toString());
     }
 
     // Inner class representing feedback data
-    public static class Feedback {
+    public static class AssignedTask {
         private String name;
         private String phoneNumber;
-        private String feedback;
+        private String assignedtask;
 
-        public Feedback(String name, String phoneNumber, String feedback) {
+        public AssignedTask(String name, String phoneNumber, String assignedtask) {
             this.name = name;
             this.phoneNumber = phoneNumber;
-            this.feedback = feedback;
+            this.assignedtask = assignedtask;
         }
 
         public String getName() {
@@ -155,8 +155,8 @@ public TechnicianPage() {
             return phoneNumber;
         }
 
-        public String getFeedback() {
-            return feedback;
+        public String getAssignedTask() {
+            return assignedtask;
         }
     }
 

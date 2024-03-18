@@ -2,3 +2,4 @@ Username: naveen, Password: suku, Role: User
 Username: thenes, Password: 1234, Role: User
 Username: tamil, Password: 1234, Role: Admin
 Username: yohin, Password: Thenes3!, Role: User
+Username: Larry, Password: larry@2020, Role: Technician
