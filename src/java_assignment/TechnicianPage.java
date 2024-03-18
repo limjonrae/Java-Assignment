@@ -12,6 +12,7 @@ public class TechnicianPage extends JFrame {
     private JButton viewassignedtasksButton;
     private JButton updateservicestatusButton;
     private JButton viewservicehistoryButton;
+    private JButton viewavailabilitystatusButton;
     private JButton logoutButton;
     private List<AssignedTask> assignedtasks;
 
@@ -30,6 +31,7 @@ public TechnicianPage() {
         viewassignedtasksButton = new JButton("View Assigned Tasks");
         updateservicestatusButton = new JButton("Update Service Status");
         viewservicehistoryButton = new JButton("View Service History");
+        viewavailabilitystatusButton = new JButton("View Availability Status");
         logoutButton = new JButton("Logout");
 
         // ActionListener for viewFeedbacksButton
@@ -65,6 +67,14 @@ public TechnicianPage() {
                 JOptionPane.showMessageDialog(TechnicianPage.this, "View Service History displayed!");
             }
         });
+        
+        // ActionListener for technicianManagementButton
+        viewavailabilitystatusButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                 // Display message for technician management
+                JOptionPane.showMessageDialog(TechnicianPage.this, "View Availability Status displayed!");
+            }
+        });
 
         // ActionListener for logoutButton
         logoutButton.addActionListener(new ActionListener() {
@@ -78,6 +88,7 @@ public TechnicianPage() {
         panel.add(viewassignedtasksButton);
         panel.add(updateservicestatusButton);
         panel.add(viewservicehistoryButton);
+        panel.add(viewavailabilitystatusButton);
         panel.add(logoutButton); // Added logout button to the panel
 
         add(panel);
