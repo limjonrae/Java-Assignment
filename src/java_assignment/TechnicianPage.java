@@ -207,7 +207,7 @@ public TechnicianPage() {
         add(panel); // Add panel to frame
         setVisible(true); // Make frame visible
     }
-   
+    
+        }
     }
-}
-
+   
