@@ -49,7 +49,7 @@ public class UserPage extends JFrame {
                     // Save feedback to file
                     saveFeedback(name, phoneNumber, feedback);
                     JOptionPane.showMessageDialog(null, "Feedback submitted successfully!");
-                }
+         }
             }
         });
 

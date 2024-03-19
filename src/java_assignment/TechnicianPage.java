@@ -14,7 +14,6 @@ public class TechnicianPage extends JFrame {
     private JButton viewservicehistoryButton;
     private JButton viewavailabilitystatusButton;
     private JButton logoutButton;
-    private List<AssignedTask> assignedtasks;
 
 public TechnicianPage() {
         setTitle("Technician Page");
@@ -85,82 +84,6 @@ public TechnicianPage() {
 
         add(panel);
         setVisible(true); // Set the frame visible
-    }
-
-    // Method to read feedbacks from file and parse them into a list
-    private List<AssignedTask> getAssignedTasksFromFile() throws IOException {
-        List<AssignedTask> assignedtasks = new ArrayList<>();
-        try (BufferedReader reader = new BufferedReader(new FileReader("assigned_tasks.txt"))) {
-            String line;
-            String name = null;
-            String phoneNumber = null;
-            StringBuilder assignedtask = new StringBuilder();
-            while ((line = reader.readLine()) != null) {
-                // Check if line is empty, indicating the end of a feedback entry
-                if (line.isEmpty()) {
-                     // If name, phone number, and feedback are all not null and feedback content is not empty, add feedback to the list
-                    if (name != null && phoneNumber != null && !assignedtask.toString().isEmpty()) {
-                        assignedtasks.add(new AssignedTask(name, phoneNumber, assignedtask.toString()));
-                         // Reset variables for the next feedback entry
-                        name = null;
-                        phoneNumber = null;
-                        assignedtask = new StringBuilder();
-                    }
-                } else {
-                    // Parse the line and assign to corresponding variables
-                    if (name == null) {
-                        name = line;
-                    } else if (phoneNumber == null) {
-                        phoneNumber = line;
-                    } else {
-                        assignedtask.append(line).append("\n");
-                    }
-                }
-            }
-            // Add the last feedback entry if it exists
-            if (name != null && phoneNumber != null && !assignedtask.toString().isEmpty()) {
-                assignedtasks.add(new AssignedTask(name, phoneNumber, assignedtask.toString()));
-            }
-        }
-        return assignedtasks;
-    }
-
-    // Method to display feedbacks using a dialog window
-    private void displayAssignedTasks(List<AssignedTask> assignedtasks) {
-        StringBuilder AssignedTaskString = new StringBuilder();
-         // Construct a string containing details of each feedback
-        for (AssignedTask assignedtask: assignedtasks) {
-            AssignedTaskString.append("Name: ").append(assignedtask.getName()).append("\n");
-            AssignedTaskString.append("Phone Number: ").append(assignedtask.getPhoneNumber()).append("\n");
-            AssignedTaskString.append("Assigned Task: ").append(assignedtask.getAssignedTask()).append("\n\n");
-        }
-        // Show the feedbacks in a dialog window
-        JOptionPane.showMessageDialog(this, AssignedTaskString.toString());
-    }
-
-    // Inner class representing feedback data
-    public static class AssignedTask {
-        private String name;
-        private String phoneNumber;
-        private String assignedtask;
-
-        public AssignedTask(String name, String phoneNumber, String assignedtask) {
-            this.name = name;
-            this.phoneNumber = phoneNumber;
-            this.assignedtask = assignedtask;
-        }
-
-        public String getName() {
-            return name;
-        }
-
-        public String getPhoneNumber() {
-            return phoneNumber;
-        }
-
-        public String getAssignedTask() {
-            return assignedtask;
-        }
     }
 
     // Main method for testing

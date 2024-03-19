@@ -10,6 +10,8 @@ import java.util.List;
 public class AdminPage extends JFrame {
     private JPanel panel;
     private JButton viewFeedbacksButton;
+    private JButton adminManagementButton;
+    private JButton userManagementButton;
     private JButton technicianManagementButton;
     private JButton serviceManagementButton;
     private JButton logoutButton;
@@ -28,7 +30,9 @@ public class AdminPage extends JFrame {
         gbc.insets = new Insets(10, 10, 10, 10);
 
         viewFeedbacksButton = new JButton("View Feedbacks");
-        technicianManagementButton = new JButton("Technician Management");
+        adminManagementButton = new JButton("Admin Account Management");
+        userManagementButton = new JButton("User Account Management");
+        technicianManagementButton = new JButton("Technician Account Management");
         serviceManagementButton = new JButton("Service Management");
         logoutButton = new JButton("Logout");
 
@@ -39,12 +43,32 @@ public class AdminPage extends JFrame {
                 new ViewFeedback();
             }
         });
+        
+        // ActionListener for adminManagementButton
+        adminManagementButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                 // Display message for technician management
+                JOptionPane.showMessageDialog(AdminPage.this, "Admin Account Management displayed!");
+                dispose(); // Close current window
+                new AdminManagement();
+            }
+        });
+        
+        // ActionListener for userManagementButton
+        userManagementButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                 // Display message for technician management
+                JOptionPane.showMessageDialog(AdminPage.this, "User Account Management displayed!");
+                dispose(); // Close current window
+                new UserManagement();
+            }
+        });
 
         // ActionListener for technicianManagementButton
         technicianManagementButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                  // Display message for technician management
-                JOptionPane.showMessageDialog(AdminPage.this, "Technician Management displayed!");
+                JOptionPane.showMessageDialog(AdminPage.this, "Technician Account Management displayed!");
                 dispose(); // Close current window
                 new TechManagement();
             }
@@ -68,6 +92,8 @@ public class AdminPage extends JFrame {
 
         // Adding buttons to the panel
         panel.add(viewFeedbacksButton);
+        panel.add(adminManagementButton);
+        panel.add(userManagementButton);
         panel.add(technicianManagementButton);
         panel.add(serviceManagementButton);
         panel.add(logoutButton); // Added logout button to the panel
@@ -157,11 +183,91 @@ public class AdminPage extends JFrame {
         new AdminPage();
     }
     
+    public class AdminManagement extends JFrame {
+    private JTextArea AdminDataTextArea;
+
+    public AdminManagement() {
+        setTitle("Admin Account Management");
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        setSize(500, 300);
+        setLocationRelativeTo(null);
+
+        AdminDataTextArea = new JTextArea();
+        AdminDataTextArea.setEditable(false);
+
+        JScrollPane scrollPane = new JScrollPane(AdminDataTextArea);
+        add(scrollPane);
+
+        displayAdminData();
+
+        setVisible(true);
+    }
+    
+    private void displayAdminData() {
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader("user_database.txt"));
+            StringBuilder adminData = new StringBuilder();
+
+            String line;
+            while ((line = reader.readLine()) != null) {
+                if (line.contains("Admin")) {
+                    adminData.append(line).append("\n");
+                }
+            }
+            
+            AdminDataTextArea.setText(adminData.toString());
+            reader.close();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        }
+    }
+    
+    public class UserManagement extends JFrame {
+    private JTextArea UserDataTextArea;
+
+    public UserManagement() {
+        setTitle("Admin Account Management");
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        setSize(500, 300);
+        setLocationRelativeTo(null);
+
+        UserDataTextArea = new JTextArea();
+        UserDataTextArea.setEditable(false);
+
+        JScrollPane scrollPane = new JScrollPane(UserDataTextArea);
+        add(scrollPane);
+
+        displayUserData();
+
+        setVisible(true);
+    }
+    
+    private void displayUserData() {
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader("user_database.txt"));
+            StringBuilder userData = new StringBuilder();
+
+            String line;
+            while ((line = reader.readLine()) != null) {
+                if (line.contains("User")) {
+                    userData.append(line).append("\n");
+                }
+            }
+            
+            UserDataTextArea.setText(userData.toString());
+            reader.close();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        }
+    }
+    
     public class TechManagement extends JFrame {
     private JTextArea TechDataTextArea;
 
     public TechManagement() {
-        setTitle("Technician Management");
+        setTitle("Technician Account Management");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setSize(500, 300);
         setLocationRelativeTo(null);

@@ -11,7 +11,7 @@ public class Java_Assignment extends JFrame {
     private JButton loginButton; // Button to navigate to login page
     
     public Java_Assignment() {
-        setTitle("Welcome to APU"); // Set window title
+        setTitle("Welcome to AHHASC"); // Set window title
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Close application on window close
         setSize(600, 400); // Set window size
         setLocationRelativeTo(null); // Center window on screen
@@ -58,6 +58,8 @@ class RegistrationPage extends JFrame {
     private JTextField usernameField; // Text field for username input
     private JPasswordField passwordField; // Password field for password input
     private JComboBox<String> userTypeDropdown; // Dropdown for selecting user type
+    private JLabel loginNotice;
+    private JButton loginButton;
     private JButton registerButton; // Button to register user
     private JButton backButton; // Button to back user
 
@@ -80,6 +82,8 @@ class RegistrationPage extends JFrame {
         userTypeDropdown = new JComboBox<>(userTypes);
         registerButton = new JButton("Register");
         backButton = new JButton("Back");
+        loginNotice = new JLabel("Already have an account?");
+        loginButton = new JButton("Login");
 
         // ActionListener for register button
         registerButton.addActionListener(new ActionListener() {
@@ -108,6 +112,13 @@ class RegistrationPage extends JFrame {
                 new Java_Assignment(); // Open main page
             }
         });
+        
+        loginButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                dispose(); // Close current window
+                new LoginPage(); // Open main page
+            }
+        });
 
         // Add components to panel
         panel.add(usernameLabel);
@@ -118,6 +129,8 @@ class RegistrationPage extends JFrame {
         panel.add(userTypeDropdown);
         panel.add(registerButton);
         panel.add(backButton);
+        panel.add(loginNotice);
+        panel.add(loginButton);
 
         add(panel); // Add panel to frame
         setVisible(true); // Make frame visible
@@ -157,6 +170,8 @@ class RegistrationPage extends JFrame {
 class LoginPage extends JFrame {
     private JTextField usernameField;
     private JPasswordField passwordField;
+    private JLabel registerNotice;
+    private JButton registerButton;
     private JButton loginButton;
     private JButton backButton;
 
@@ -175,6 +190,8 @@ class LoginPage extends JFrame {
         usernameField = new JTextField();
         JLabel passwordLabel = new JLabel("Password:");
         passwordField = new JPasswordField();
+        registerNotice = new JLabel("Don't have an account?");
+        registerButton = new JButton("Register");
         loginButton = new JButton("Login");
         backButton = new JButton("Back");
 
@@ -227,6 +244,13 @@ class LoginPage extends JFrame {
                 new Java_Assignment(); // Opening the main application window (Assignment)
             }
         });
+         
+        registerButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                dispose(); // Closing the login page
+                new RegistrationPage(); // Opening the registration page
+            }
+        });
 
          // Adding components to the panel
         panel.add(usernameLabel);
@@ -235,6 +259,8 @@ class LoginPage extends JFrame {
         panel.add(passwordField);
         panel.add(loginButton);
         panel.add(backButton);
+        panel.add(registerNotice);
+        panel.add(registerButton);
 
         add(panel); // Adding the panel to the frame
         setVisible(true); // Making the frame visible
