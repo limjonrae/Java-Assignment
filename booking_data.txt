@@ -1,16 +1,30 @@
 Customer: xfc
+Email: xfc@gmail.com
 Room Number: rfc
 Block: 33
 Appointment Time: 9:00 AM
 Problem: fc
+Other Problems: living hall fan is not turning
 Date: 3 January 2024
 Payment Method: Cash
 ---------------------------
 Customer: oh
+Email: oh@gmail.com
 Room Number: jn
 Block: in
 Appointment Time: 9:00 AM
 Problem: in
+Other Problems: aircond is not cold
 Date: 3 January 2022
+Payment Method: Cash
+---------------------------
+Customer: nezzer
+Email: nezzer@gmail.com
+Room Number: 33
+Block: 2
+Appointment Time: 
+Problem: Tables
+Other Problems: 
+Date: 1 January 2022
 Payment Method: Cash
 ---------------------------

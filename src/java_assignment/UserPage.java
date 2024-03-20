@@ -98,10 +98,25 @@ public class UserPage extends JFrame {
 class BookingPage extends JFrame {
 
     // declaration of components
-    private JTextField customerField;
+    private JPanel panel;
+    private JTextField customerNameField;
+    private JTextField emailField;
     private JTextField roomNumberField;
     private JTextField blockField;
-    private JTextField problemField;
+    private JLabel Furniture;
+    private JRadioButton tables;
+    private JRadioButton chairs;
+    private JRadioButton cupboards;
+    private JRadioButton beds;
+    private JRadioButton windows;
+    private JLabel Electrical;
+    private JRadioButton airCond;
+    private JRadioButton wallSocket;
+    private JRadioButton waterHeater;
+    private JRadioButton lights;
+    private JRadioButton fans;
+    private JLabel otherIssues;
+    private JTextField others;
     private JRadioButton time9AMRadioButton;
     private JRadioButton time12PMRadioButton;
     private JRadioButton time3PMRadioButton;
@@ -115,8 +130,8 @@ class BookingPage extends JFrame {
     public BookingPage() {
         setTitle("Booking Page");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(500, 300);
-        setLayout(new GridLayout(11, 2));
+        setSize(1000, 1000);
+        setLayout(new GridLayout(20, 5));
         getContentPane().setBackground(new Color(173, 216, 230));
 
         Font font = new Font("Courier New", Font.BOLD, 13);
@@ -124,7 +139,8 @@ class BookingPage extends JFrame {
         createCustomerField(font);
         createRoomNumberField(font);
         createBlockField(font);
-        createProblemField(font);
+        createIssueField(font);
+        createotherIssueField(font);
         createTimeRadioButtons(font);
         createDateComboBoxes(font);
         createPaymentMethodComboBox(font);
@@ -133,23 +149,60 @@ class BookingPage extends JFrame {
         setVisible(true);
     }
 
-    private void createCustomerField(Font font) {
+        private void createCustomerField(Font font) {
         JLabel customerLabel = new JLabel("Customer Name:");
-        customerField = new JTextField();
-        customerField.setColumns(15);
-        customerField.setFont(font);
+        JLabel emailLabel = new JLabel("Customer Email:");
+        customerNameField = new JTextField();
+        customerNameField.setColumns(15);
+        customerNameField.setFont(font);
+        emailField = new JTextField();
+        emailField.setColumns(15);
+        emailField.setFont(font);
         add(customerLabel);
-        add(customerField);
+        add(customerNameField);
+        add(emailLabel);
+        add(emailField);
     }
 
-    private void createProblemField(Font font) {
-        JLabel problemLabel = new JLabel("Problem:");
-        problemField = new JTextField();
-        problemField.setFont(font);
-        problemField.setColumns(15);
-        add(problemLabel);
-        add(problemField);
+    private void createIssueField(Font font) {
+        JLabel Furniture = new JLabel("Furniture:");
+        Furniture.setFont(font);
+        tables = new JRadioButton("Tables");
+        chairs = new JRadioButton("Chairs");
+        cupboards = new JRadioButton("Cupboards");
+        beds = new JRadioButton("Beds");
+        windows = new JRadioButton("Windows");
+        JLabel Electrical = new JLabel("Electrical Appliances:");
+        Furniture.setFont(font);
+        airCond = new JRadioButton("Air-Conditioner");
+        wallSocket = new JRadioButton("Wall Socket");
+        waterHeater = new JRadioButton("Water Heater");
+        lights = new JRadioButton("Lights");
+        fans = new JRadioButton("Fans");
+        add(Furniture);
+        add(tables);
+        add(chairs);
+        add(cupboards);
+        add(beds);
+        add(windows);
+        add(Electrical);
+        add(airCond);
+        add(wallSocket);
+        add(waterHeater);
+        add(lights);
+        add(fans);
     }
+    
+    private void createotherIssueField(Font font) { 
+        JLabel otherIssues = new JLabel("Other Issues:"); 
+        others = new JTextField(); 
+        others.setFont(font); 
+        others.setColumns(15); 
+        add(otherIssues); 
+        add(others); 
+    }
+    
+    
 
     private void createRoomNumberField(Font font) {
         JLabel roomNumberLabel = new JLabel("Room Number:");
@@ -222,7 +275,7 @@ class BookingPage extends JFrame {
         add(paymentMethodLabel);
         add(paymentMethodComboBox);
     }
-
+    
     private void createButtons(Font font) {
         backButton = new JButton("Back");
         proceedButton = new JButton("Proceed");
@@ -240,10 +293,33 @@ class BookingPage extends JFrame {
         proceedButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
 
-                String customer = customerField.getText();
+                String customer = customerNameField.getText();
+                String email = emailField.getText();
                 String roomNumber = roomNumberField.getText();
                 String block = blockField.getText();
-                String problem = problemField.getText();
+                String problem = "";
+                if (tables.isSelected()) {
+                    problem = "Tables";
+                } else if (chairs.isSelected()) {
+                    problem = "Chairs";
+                } else if (cupboards.isSelected()) {
+                    problem = "Cupboards";
+                } else if (beds.isSelected()) {
+                    problem = "Beds";
+                } else if (windows.isSelected()) {
+                    problem = "Windows";
+                } else if (airCond.isSelected()) {
+                    problem = "Air-Conditioner";
+                } else if (wallSocket.isSelected()) {
+                    problem = "Wall Socket";
+                } else if (waterHeater.isSelected()) {
+                    problem = "Water Heater";
+                } else if (lights.isSelected()) {
+                    problem = "Lights";
+                } else if (fans.isSelected()) {
+                    problem = "Fans";
+                }
+                String problemtext = others.getText();
                 String time = "";
                 if (time9AMRadioButton.isSelected()) {
                     time = "9:00 AM";
@@ -257,9 +333,9 @@ class BookingPage extends JFrame {
                 String year = (String) yearComboBox.getSelectedItem();
                 String paymentMethod = (String) paymentMethodComboBox.getSelectedItem();
 
-                saveBookingData(customer, roomNumber, block, time, problem, day, month, year, paymentMethod);
+                saveBookingData(customer, email, roomNumber, block, time, problem, problemtext, day, month, year, paymentMethod);
 
-                BillingPage billingPage = new BillingPage(customer, roomNumber, block, time, problem, day, month, year, paymentMethod);
+                BillingPage billingPage = new BillingPage(customer, email, roomNumber, block, time, problem, problemtext, day, month, year, paymentMethod);
                 billingPage.setVisible(true);
                 dispose();
             }
@@ -269,16 +345,18 @@ class BookingPage extends JFrame {
         add(proceedButton);
     }
 
-    private void saveBookingData(String customer, String roomNumber, String block, String time, String problem,
+    private void saveBookingData(String customer, String email, String roomNumber, String block, String time, String problem, String problemtext,
                                  String day, String month, String year, String paymentMethod) {
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter("booking_data.txt", true));
             // Append data to the text file
             writer.write("Customer: " + customer + "\n");
+            writer.write("Email: " + email + "\n");
             writer.write("Room Number: " + roomNumber + "\n");
             writer.write("Block: " + block + "\n");
             writer.write("Appointment Time: " + time + "\n");
             writer.write("Problem: " + problem + "\n");
+            writer.write("Other Problems: " + problemtext + "\n");
             writer.write("Date: " + day + " " + month + " " + year + "\n");
             writer.write("Payment Method: " + paymentMethod + "\n");
             writer.write("---------------------------\n");
@@ -293,7 +371,7 @@ class BillingPage extends JFrame {
     private JButton backButton;
     private JButton payButton;
 
-    public BillingPage(String customer, String roomNumber, String block, String time, String problem, String day, String month, String year, String paymentMethod) {
+    public BillingPage(String customer, String email, String roomNumber, String block, String time, String problem, String problemtext, String day, String month, String year, String paymentMethod) {
         setTitle("Payment Billing Page");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(500, 300);
@@ -303,34 +381,42 @@ class BillingPage extends JFrame {
         Font font = new Font("Courier New", Font.BOLD, 13);
 
         JLabel customerLabel = new JLabel("Customer Name:");
+        JLabel emailLabel = new JLabel("Customer Email:");
         JLabel roomNumberLabel = new JLabel("Room Number:");
         JLabel blockLabel = new JLabel("Block:");
         JLabel timeLabel = new JLabel("Appointment Time:");
         JLabel problemLabel = new JLabel("Problem:");
+        JLabel problemtextLabel = new JLabel("Other Problems:");
         JLabel dateLabel = new JLabel("Date:");
         JLabel paymentMethodLabel = new JLabel("Payment Method:");
 
         JLabel customerValueLabel = new JLabel(customer);
+        JLabel emailValueLabel = new JLabel(email);
         JLabel roomNumberValueLabel = new JLabel(roomNumber);
         JLabel blockValueLabel = new JLabel(block);
         JLabel timeValueLabel = new JLabel(time);
         JLabel problemValueLabel = new JLabel(problem);
+        JLabel problemtextValueLabel = new JLabel(problemtext);
         JLabel dateValueLabel = new JLabel(day + " " + month + " " + year);
         JLabel paymentMethodValueLabel = new JLabel(paymentMethod);
 
         customerLabel.setFont(font);
+        emailLabel.setFont(font);
         roomNumberLabel.setFont(font);
         blockLabel.setFont(font);
         timeLabel.setFont(font);
         problemLabel.setFont(font);
+        problemtextLabel.setFont(font);
         dateLabel.setFont(font);
         paymentMethodLabel.setFont(font);
 
         customerValueLabel.setFont(font);
+        emailValueLabel.setFont(font);
         roomNumberValueLabel.setFont(font);
         blockValueLabel.setFont(font);
         timeValueLabel.setFont(font);
         problemValueLabel.setFont(font);
+        problemtextValueLabel.setFont(font);
         dateValueLabel.setFont(font);
         paymentMethodValueLabel.setFont(font);
 
@@ -354,6 +440,8 @@ class BillingPage extends JFrame {
 
         add(customerLabel);
         add(customerValueLabel);
+        add(emailLabel);
+        add(emailValueLabel);
         add(roomNumberLabel);
         add(roomNumberValueLabel);
         add(blockLabel);
@@ -362,6 +450,8 @@ class BillingPage extends JFrame {
         add(timeValueLabel);
         add(problemLabel);
         add(problemValueLabel);
+        add(problemtextLabel);
+        add(problemtextValueLabel);
         add(dateLabel);
         add(dateValueLabel);
         add(paymentMethodLabel);
