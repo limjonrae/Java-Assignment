@@ -1,5 +1,7 @@
-Username: naveen, Password: suku, Role: User
-Username: thenes, Password: 1234, Role: User
-Username: tamil, Password: 1234, Role: Admin
-Username: yohin, Password: Thenes3!, Role: User
-Username: Larry, Password: larry@2020, Role: Technician
+Email: naveen@gmail.com, Username: naveen, Password: suku, Role: Customer
+Email: thenes@gmail.com, Username: thenes, Password: 1234, Role: Customer
+Email: tamil@gmail.com, Username: tamil, Password: 1234, Role: Admin
+Email: yohin@gmail.com, Username: yohin, Password: Thenes3!, Role: Customer
+Email: larry@gmail.com, Username: Larry, Password: larry@2020, Role: Technician
+Email: nezzer@gmail.com, Username: nezzer, Password: nebby@1234, Role: Customer
+Email: bob@gmail.com, Username: bob, Password: bob@1234, Role: Technician

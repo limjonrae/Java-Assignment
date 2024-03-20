@@ -31,7 +31,7 @@ public class AdminPage extends JFrame {
 
         viewFeedbacksButton = new JButton("View Feedbacks");
         adminManagementButton = new JButton("Admin Account Management");
-        userManagementButton = new JButton("User Account Management");
+        userManagementButton = new JButton("Customer Account Management");
         technicianManagementButton = new JButton("Technician Account Management");
         serviceManagementButton = new JButton("Service Management");
         logoutButton = new JButton("Logout");
@@ -58,7 +58,7 @@ public class AdminPage extends JFrame {
         userManagementButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                  // Display message for technician management
-                JOptionPane.showMessageDialog(AdminPage.this, "User Account Management displayed!");
+                JOptionPane.showMessageDialog(AdminPage.this, "Customer Account Management displayed!");
                 dispose(); // Close current window
                 new UserManagement();
             }
@@ -227,7 +227,7 @@ public class AdminPage extends JFrame {
     private JTextArea UserDataTextArea;
 
     public UserManagement() {
-        setTitle("User Account Management");
+        setTitle("Customer Account Management");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setSize(500, 300);
         setLocationRelativeTo(null);
@@ -250,7 +250,7 @@ public class AdminPage extends JFrame {
 
             String line;
             while ((line = reader.readLine()) != null) {
-                if (line.contains("User")) {
+                if (line.contains("Customer")) {
                     userData.append(line).append("\n");
                 }
             }

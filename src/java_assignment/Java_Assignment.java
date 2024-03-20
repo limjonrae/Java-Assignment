@@ -55,8 +55,10 @@ public class Java_Assignment extends JFrame {
 }
 
 class RegistrationPage extends JFrame {
+    private JTextField emailField;
     private JTextField usernameField; // Text field for username input
     private JPasswordField passwordField; // Password field for password input
+    private JPasswordField confirmpasswordField; //Password field for confirm password
     private JComboBox<String> userTypeDropdown; // Dropdown for selecting user type
     private JLabel loginNotice;
     private JButton loginButton;
@@ -70,15 +72,19 @@ class RegistrationPage extends JFrame {
         setSize(400, 350); // Set window size
         setLocationRelativeTo(null); // Center window on screen
 
-        JPanel panel = new JPanel(new GridLayout(6, 2, 10, 10)); // Create panel with GridLayout
+        JPanel panel = new JPanel(new GridLayout(7, 2, 10, 10)); // Create panel with GridLayout
 
          // Components for registration form
+        JLabel emailLabel = new JLabel("Email:");
+        emailField = new JTextField();
         JLabel usernameLabel = new JLabel("Username:");
         usernameField = new JTextField();
         JLabel passwordLabel = new JLabel("Password:");
         passwordField = new JPasswordField();
+        JLabel confirmpasswordLabel = new JLabel("Confirm password:");
+        confirmpasswordField = new JPasswordField();
         JLabel userTypeLabel = new JLabel("User Type:");
-        String[] userTypes = {"User", "Admin", "Technician"};
+        String[] userTypes = {"User", "Admin", "Customer"};
         userTypeDropdown = new JComboBox<>(userTypes);
         registerButton = new JButton("Register");
         backButton = new JButton("Back");
@@ -88,11 +94,13 @@ class RegistrationPage extends JFrame {
         // ActionListener for register button
         registerButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                String email = emailField.getText();
                 String username = usernameField.getText();
                 String password = new String(passwordField.getPassword());
+                String confirmpassword = new String(confirmpasswordField.getPassword());
                 String userType = (String) userTypeDropdown.getSelectedItem();
                 if (isPasswordValid(password)) {
-                    if (registerUser(username, password, userType)) {
+                    if (registerUser(email, username, password, confirmpassword, userType)) {
                         JOptionPane.showMessageDialog(null, "Registration successful!");
                         dispose(); // Close current window
                         new Java_Assignment(); // Open main page
@@ -121,10 +129,14 @@ class RegistrationPage extends JFrame {
         });
 
         // Add components to panel
+        panel.add(emailLabel);
+        panel.add(emailField);
         panel.add(usernameLabel);
         panel.add(usernameField);
         panel.add(passwordLabel);
         panel.add(passwordField);
+        panel.add(confirmpasswordLabel);
+        panel.add(confirmpasswordField);
         panel.add(userTypeLabel);
         panel.add(userTypeDropdown);
         panel.add(registerButton);
@@ -142,9 +154,14 @@ class RegistrationPage extends JFrame {
         String regex = "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*?&_])[A-Za-z\\d@$!%*?&_]{8,}$";
         return Pattern.compile(regex).matcher(password).matches();
     }
+    
 
     // Method to register user
-    private boolean registerUser(String username, String password, String userType) {
+    private boolean registerUser(String email, String username, String password, String confirmpassword, String userType) {
+        if (!password.equals(confirmpassword)) {
+        JOptionPane.showMessageDialog(this, "Passwords do not match.");
+        return false;
+        }
         try {
             BufferedReader reader = new BufferedReader(new FileReader("user_database.txt"));
             String line;
@@ -156,7 +173,7 @@ class RegistrationPage extends JFrame {
             }
             reader.close();
             BufferedWriter writer = new BufferedWriter(new FileWriter("user_database.txt", true));
-            writer.write("Username: " + username + ", Password: " + password + ", Role: " + userType + "\n");
+            writer.write("Email: " + email + ", Username: " + username + ", Password: " + confirmpassword + ", Role: " + userType + "\n");
             writer.close();
             return true;
         } catch (IOException ex) {

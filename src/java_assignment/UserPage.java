@@ -42,12 +42,12 @@ public class UserPage extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 // Code to view and submit feedback
                 String name = JOptionPane.showInputDialog(null, "Enter your name:");
-                String phoneNumber = JOptionPane.showInputDialog(null, "Enter your phone number:");
+                String email = JOptionPane.showInputDialog(null, "Enter your email:");
                 String feedback = JOptionPane.showInputDialog(null, "Enter your feedback:");
 
-                if (name != null && phoneNumber != null && feedback != null) {
+                if (name != null && email != null && feedback != null) {
                     // Save feedback to file
-                    saveFeedback(name, phoneNumber, feedback);
+                    saveFeedback(name, email, feedback);
                     JOptionPane.showMessageDialog(null, "Feedback submitted successfully!");
          }
             }
@@ -76,12 +76,13 @@ public class UserPage extends JFrame {
         setVisible(true);
     }
 
-    private void saveFeedback(String name, String phoneNumber, String feedback) {
+    private void saveFeedback(String name, String email, String feedback) {
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter("feedbacks.txt", true));
             writer.write("Name: " + name + "\n");
-            writer.write("Phone Number: " + phoneNumber + "\n");
-            writer.write("Feedback: " + feedback + "\n\n");
+            writer.write("Email: " + email + "\n");
+            writer.write("Feedback: " + feedback + "\n");
+            writer.write("---------------------------");
             writer.close();
         } catch (IOException ex) {
             ex.printStackTrace();
@@ -169,7 +170,7 @@ class BookingPage extends JFrame {
     }
 
     private void createTimeRadioButtons(Font font) {
-        JLabel timeLabel = new JLabel("Cleaning Time:");
+        JLabel timeLabel = new JLabel("Appointment Time:");
         time9AMRadioButton = new JRadioButton("9:00 AM");
         time12PMRadioButton = new JRadioButton("12:00 PM");
         time3PMRadioButton = new JRadioButton("3:00 PM");
@@ -276,7 +277,7 @@ class BookingPage extends JFrame {
             writer.write("Customer: " + customer + "\n");
             writer.write("Room Number: " + roomNumber + "\n");
             writer.write("Block: " + block + "\n");
-            writer.write("Cleaning Time: " + time + "\n");
+            writer.write("Appointment Time: " + time + "\n");
             writer.write("Problem: " + problem + "\n");
             writer.write("Date: " + day + " " + month + " " + year + "\n");
             writer.write("Payment Method: " + paymentMethod + "\n");
@@ -304,7 +305,7 @@ class BillingPage extends JFrame {
         JLabel customerLabel = new JLabel("Customer Name:");
         JLabel roomNumberLabel = new JLabel("Room Number:");
         JLabel blockLabel = new JLabel("Block:");
-        JLabel timeLabel = new JLabel("Cleaning Time:");
+        JLabel timeLabel = new JLabel("Appointment Time:");
         JLabel problemLabel = new JLabel("Problem:");
         JLabel dateLabel = new JLabel("Date:");
         JLabel paymentMethodLabel = new JLabel("Payment Method:");

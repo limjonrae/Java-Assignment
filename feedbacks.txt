@@ -1,16 +1,20 @@
 Name: thenes
-Phone Number: 1111
+Email: thenes@gmail.com
 Feedback: ok
 ---------------------------
-Name: ichabeezer
-Phone Number: 2222
+Name: nezzer
+Email: nezzer@gmail.com
 Feedback: great
 ---------------------------
-Name: scooter
-Phone Number: 3333
+Name: yohin
+Email: yohin@gmail.com
 Feedback: best ever
-
-Name: 
-Phone Number: 
-Feedback: 
-
+---------------------------
+Name: naveen
+Email: naveen@gmail.com
+Feedback: fast service
+---------------------------
+Name: bob
+Email: bob@gmail.com
+Feedback: excellent
+---------------------------

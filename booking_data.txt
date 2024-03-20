@@ -1,7 +1,7 @@
 Customer: xfc
 Room Number: rfc
 Block: 33
-Cleaning Time: 9:00 AM
+Appointment Time: 9:00 AM
 Problem: fc
 Date: 3 January 2024
 Payment Method: Cash
@@ -9,7 +9,7 @@ Payment Method: Cash
 Customer: oh
 Room Number: jn
 Block: in
-Cleaning Time: 9:00 AM
+Appointment Time: 9:00 AM
 Problem: in
 Date: 3 January 2022
 Payment Method: Cash
