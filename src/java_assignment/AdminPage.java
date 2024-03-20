@@ -227,7 +227,7 @@ public class AdminPage extends JFrame {
     private JTextArea UserDataTextArea;
 
     public UserManagement() {
-        setTitle("Admin Account Management");
+        setTitle("User Account Management");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setSize(500, 300);
         setLocationRelativeTo(null);
