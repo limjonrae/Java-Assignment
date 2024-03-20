@@ -63,7 +63,7 @@ public class UserPage extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 // Code to logout
                 dispose();
-                new LoginPage();
+                new LoginSelection();
             }
         });
 

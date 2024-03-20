@@ -69,7 +69,7 @@ public TechnicianPage() {
         logoutButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 dispose(); // Close the AdminPage
-                new LoginPage(); // Open the login page
+                new LoginSelection(); // Open the login page
             }
         });
 
