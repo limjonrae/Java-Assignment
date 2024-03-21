@@ -5,14 +5,13 @@ import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
 import java.util.ArrayList;
-    
+
 public class UserPage extends JFrame {
     private JPanel panel;
     private JButton makeBookingButton;
     private JButton feedbackButton;
     private JButton orderStatusButton;
     private JButton logoutButton;
-    
 
     public UserPage() {
         setTitle("User Page");
@@ -35,21 +34,14 @@ public class UserPage extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 dispose();
                 new BookingPage();
-}
+            }
         });
 
         feedbackButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 // Code to view and submit feedback
-                String name = JOptionPane.showInputDialog(null, "Enter your name:");
-                String email = JOptionPane.showInputDialog(null, "Enter your email:");
-                String feedback = JOptionPane.showInputDialog(null, "Enter your feedback:");
-
-                if (name != null && email != null && feedback != null) {
-                    // Save feedback to file
-                    saveFeedback(name, email, feedback);
-                    JOptionPane.showMessageDialog(null, "Feedback submitted successfully!");
-         }
+                dispose();
+                new FeedbackPage();
             }
         });
 
@@ -76,22 +68,139 @@ public class UserPage extends JFrame {
         setVisible(true);
     }
 
-    private void saveFeedback(String name, String email, String feedback) {
+    public static void main(String[] args) {
+        UserPage userPage = new UserPage();
+        userPage.setVisible(true);
+    }
+}
+
+class FeedbackPage extends JFrame {
+    private JPanel panel;
+    private JTextField techNameField;
+    private JTextField emailField;
+    private JLabel Rating;
+    private JRadioButton Terrible;
+    private JRadioButton Bad;
+    private JRadioButton Medium;
+    private JRadioButton Good;
+    private JRadioButton Excellent;
+    private JLabel comment;
+    private JTextField commentText;
+    private JButton backButton;
+    private JButton proceedButton;
+
+    public FeedbackPage(){
+        setTitle("Feedback Page");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setSize(1000, 1000);
+        setLayout(new GridLayout(20, 5));
+        getContentPane().setBackground(new Color(173, 216, 230));
+
+        Font font = new Font("Courier New", Font.BOLD, 13);
+
+        createTechField(font);
+        createratingField(font);
+        createcommentField(font);
+        createButtons(font);
+
+        setVisible(true);
+    }
+    
+    private void createTechField(Font font) {
+        JLabel techLabel = new JLabel("Technician Name:");
+        JLabel emailLabel = new JLabel("Technician Email:");
+        techNameField = new JTextField();
+        techNameField.setColumns(15);
+        techNameField.setFont(font);
+        emailField = new JTextField();
+        emailField.setColumns(15);
+        emailField.setFont(font);
+        add(techLabel);
+        add(techNameField);
+        add(emailLabel);
+        add(emailField);
+    }
+    
+    private void createratingField(Font font) {
+        JLabel Rating = new JLabel("Rating:");
+        Rating.setFont(font);
+        Terrible = new JRadioButton("Terrible");
+        Bad = new JRadioButton("Bad");
+        Medium = new JRadioButton("Medium");
+        Good = new JRadioButton("Good");
+        Excellent = new JRadioButton("Excellent");
+        add(Rating);
+        add(Terrible);
+        add(Bad);
+        add(Medium);
+        add(Good);
+        add(Excellent);
+    }
+    
+    private void createcommentField(Font font) { 
+        JLabel comment = new JLabel("Feedback (Optional):"); 
+        commentText = new JTextField(); 
+        commentText.setFont(font); 
+        commentText.setColumns(15); 
+        add(comment); 
+        add(commentText); 
+    }
+    
+    private void createButtons(Font font) {
+        backButton = new JButton("Back");
+        proceedButton = new JButton("Proceed");
+
+        backButton.setFont(font);
+        proceedButton.setFont(font);
+
+        backButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                dispose();
+                new UserPage();
+            }
+    });
+        
+    proceedButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+            
+            String technician = techNameField.getText();
+                String email = emailField.getText();
+                String Rating = "";
+                if (Terrible.isSelected()) {
+                    Rating = "Terrible";
+                } else if (Bad.isSelected()) {
+                    Rating = "Bad";
+                } else if (Medium.isSelected()) {
+                    Rating = "Medium";
+                } else if (Good.isSelected()) {
+                    Rating = "Good";
+                } else if (Excellent.isSelected()) {
+                    Rating = "Excellent";
+                }
+                String comment = commentText.getText();
+                
+                saveFeedback(technician, email, Rating, comment);
+                JOptionPane.showMessageDialog(null, "Feedback submitted successfully!");
+                }
+        });
+
+        add(backButton);
+        add(proceedButton);
+    }
+
+                private void saveFeedback(String technician, String email, String Rating, String comment) {
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter("feedbacks.txt", true));
-            writer.write("Name: " + name + "\n");
+            // Append data to the text file
+            writer.write("Name: " + technician + "\n");
             writer.write("Email: " + email + "\n");
-            writer.write("Feedback: " + feedback + "\n");
-            writer.write("---------------------------");
+            writer.write("Rating: " + Rating + "\n");
+            writer.write("Feedback: " + comment + "\n");
+            writer.write("---------------------------\n");
             writer.close();
         } catch (IOException ex) {
             ex.printStackTrace();
         }
-    }
-
-    public static void main(String[] args) {
-        UserPage userPage = new UserPage();
-        userPage.setVisible(true);
     }
 }
 
@@ -149,7 +258,7 @@ class BookingPage extends JFrame {
         setVisible(true);
     }
 
-        private void createCustomerField(Font font) {
+    private void createCustomerField(Font font) {
         JLabel customerLabel = new JLabel("Customer Name:");
         JLabel emailLabel = new JLabel("Customer Email:");
         customerNameField = new JTextField();
@@ -192,7 +301,7 @@ class BookingPage extends JFrame {
         add(lights);
         add(fans);
     }
-    
+
     private void createotherIssueField(Font font) { 
         JLabel otherIssues = new JLabel("Other Issues:"); 
         others = new JTextField(); 
@@ -201,8 +310,6 @@ class BookingPage extends JFrame {
         add(otherIssues); 
         add(others); 
     }
-    
-    
 
     private void createRoomNumberField(Font font) {
         JLabel roomNumberLabel = new JLabel("Room Number:");
@@ -275,7 +382,7 @@ class BookingPage extends JFrame {
         add(paymentMethodLabel);
         add(paymentMethodComboBox);
     }
-    
+
     private void createButtons(Font font) {
         backButton = new JButton("Back");
         proceedButton = new JButton("Proceed");

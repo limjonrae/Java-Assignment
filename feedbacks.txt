@@ -1,20 +1,30 @@
 Name: thenes
 Email: thenes@gmail.com
+Rating: Good
 Feedback: ok
 ---------------------------
 Name: nezzer
 Email: nezzer@gmail.com
+Rating: Good
 Feedback: great
 ---------------------------
 Name: yohin
 Email: yohin@gmail.com
+Rating: Good
 Feedback: best ever
 ---------------------------
 Name: naveen
 Email: naveen@gmail.com
+Rating: Good
 Feedback: fast service
 ---------------------------
 Name: bob
 Email: bob@gmail.com
+Rating: Good
 Feedback: excellent
+---------------------------
+Name: Scooter
+Email: scooter@gmail.com
+Rating: Good
+Feedback: Great Job
 ---------------------------

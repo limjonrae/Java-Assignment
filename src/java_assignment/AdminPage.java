@@ -13,7 +13,8 @@ public class AdminPage extends JFrame {
     private JButton adminManagementButton;
     private JButton userManagementButton;
     private JButton technicianManagementButton;
-    private JButton serviceManagementButton;
+    private JButton viewBookingButton;
+    private JButton registerButton;
     private JButton logoutButton;
     private List<Feedback> feedbacks;
 
@@ -33,7 +34,8 @@ public class AdminPage extends JFrame {
         adminManagementButton = new JButton("Admin Account Management");
         userManagementButton = new JButton("Customer Account Management");
         technicianManagementButton = new JButton("Technician Account Management");
-        serviceManagementButton = new JButton("Service Management");
+        viewBookingButton = new JButton("View Booking Details");
+        registerButton = new JButton("Register New User");
         logoutButton = new JButton("Logout");
 
         // ActionListener for viewFeedbacksButton
@@ -75,10 +77,18 @@ public class AdminPage extends JFrame {
         });
 
         // ActionListener for serviceManagementButton
-        serviceManagementButton.addActionListener(new ActionListener() {
+        viewBookingButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                 // Display message for service management
-                JOptionPane.showMessageDialog(AdminPage.this, "Service Management displayed!");
+                 // Display message for viewing booking details
+                JOptionPane.showMessageDialog(AdminPage.this, "View Booking displayed!");
+                new ViewBooking();
+            }
+        });
+        
+        registerButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                // Initialize feedbacks list
+                new RegistrationPage();
             }
         });
 
@@ -95,7 +105,8 @@ public class AdminPage extends JFrame {
         panel.add(adminManagementButton);
         panel.add(userManagementButton);
         panel.add(technicianManagementButton);
-        panel.add(serviceManagementButton);
+        panel.add(viewBookingButton);
+        panel.add(registerButton);
         panel.add(logoutButton); // Added logout button to the panel
 
         add(panel);
@@ -301,6 +312,42 @@ public class AdminPage extends JFrame {
             ex.printStackTrace();
         }
         }
+    }
+    
+    class ViewBooking extends JFrame {
+    private JTextArea orderStatusTextArea;
+
+    public ViewBooking() {
+        setTitle("Booking Data");
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        setSize(500, 300);
+        setLocationRelativeTo(null);
+
+        orderStatusTextArea = new JTextArea();
+        orderStatusTextArea.setEditable(false);
+
+        JScrollPane scrollPane = new JScrollPane(orderStatusTextArea);
+        add(scrollPane);
+
+        displayBookingData();
+
+        setVisible(true);
+    }
+
+    private void displayBookingData() {
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader("booking_data.txt"));
+            String line;
+            StringBuilder bookingData = new StringBuilder();
+            while ((line = reader.readLine()) != null) {
+                bookingData.append(line).append("\n");
+            }
+            orderStatusTextArea.setText(bookingData.toString());
+            reader.close();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
     }
     
     class ViewFeedback extends JFrame {

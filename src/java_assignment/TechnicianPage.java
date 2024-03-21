@@ -27,7 +27,7 @@ public TechnicianPage() {
         gbc.gridy = GridBagConstraints.RELATIVE;
         gbc.insets = new Insets(10, 10, 10, 10);
 
-        viewassignedtasksButton = new JButton("View Assigned Tasks");
+        viewassignedtasksButton = new JButton("View Booking Details");
         updateservicestatusButton = new JButton("Update Service Status");
         viewservicehistoryButton = new JButton("View Service History");
         viewavailabilitystatusButton = new JButton("View Availability Status");
