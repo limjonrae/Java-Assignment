@@ -605,4 +605,3 @@ class OrderStatusPage extends JFrame {
         }
     }
 }
-

@@ -28,3 +28,70 @@ Other Problems:
 Date: 1 January 2022
 Payment Method: Cash
 ---------------------------
+Customer: cavis
+Email: cavis@gmail.com
+Room Number: 20
+Block: 1
+Appointment Time: 12:00 PM
+Problem: Water Heater
+Other Problems: 
+Date: 3 May 2023
+Payment Method: Cash
+---------------------------
+Customer: 
+Email: 
+Room Number: 
+Block: 
+Appointment Time: 
+Problem: 
+Other Problems: 
+Date: 1 January 2022
+Payment Method: Cash
+---------------------------
+Customer: 
+Email: 
+Room Number: 
+Block: 
+Appointment Time: 
+Problem: 
+Other Problems: 
+Date: 1 January 2022
+Payment Method: Cash
+---------------------------
+Customer: 
+Email: 
+Room Number: 
+Block: 
+Appointment Time: 
+Problem: 
+Other Problems: 
+Date: 1 January 2022
+---------------------------
+Customer: jimmy
+Email: jimmy@gmail.com
+Room Number: 2
+Block: 2
+Appointment Time: 
+Problem: Windows
+Other Problems: 
+Date: 1 January 2022
+---------------------------
+Customer: milward
+Email: milward@gmail.com
+Room Number: 22
+Block: 2
+Appointment Time: 
+Problem: Tables
+Other Problems: 
+Date: 1 January 2022
+---------------------------
+Customer: 
+Email: 
+Room Number: 
+Block: 
+Appointment Time: 
+Problem: 
+Other Problems: 
+Date: 1 January 2022
+Payment Method: Cash
+---------------------------

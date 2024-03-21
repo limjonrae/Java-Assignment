@@ -9,10 +9,9 @@ import java.util.List;
     
 public class TechnicianPage extends JFrame {
     private JPanel panel;
-    private JButton viewassignedtasksButton;
     private JButton updateservicestatusButton;
     private JButton viewservicehistoryButton;
-    private JButton viewavailabilitystatusButton;
+    private JButton viewBookingButton;
     private JButton logoutButton;
 
 public TechnicianPage() {
@@ -27,19 +26,10 @@ public TechnicianPage() {
         gbc.gridy = GridBagConstraints.RELATIVE;
         gbc.insets = new Insets(10, 10, 10, 10);
 
-        viewassignedtasksButton = new JButton("View Booking Details");
         updateservicestatusButton = new JButton("Update Service Status");
         viewservicehistoryButton = new JButton("View Service History");
-        viewavailabilitystatusButton = new JButton("View Availability Status");
+        viewBookingButton = new JButton("View Booking Details");
         logoutButton = new JButton("Logout");
-
-        // ActionListener for viewFeedbacksButton
-        viewassignedtasksButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                // Initialize feedbacks list
-                new OrderStatusPage();
-            }
-        });
 
         // ActionListener for technicianManagementButton
         updateservicestatusButton.addActionListener(new ActionListener() {
@@ -57,11 +47,12 @@ public TechnicianPage() {
             }
         });
         
-        // ActionListener for technicianManagementButton
-        viewavailabilitystatusButton.addActionListener(new ActionListener() {
+        // ActionListener for viewBookingButton
+        viewBookingButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                 // Display message for technician management
-                JOptionPane.showMessageDialog(TechnicianPage.this, "View Availability Status displayed!");
+                 // Display message for viewing booking details
+                JOptionPane.showMessageDialog(TechnicianPage.this, "View Booking displayed!");
+                new ViewBooking();
             }
         });
 
@@ -74,10 +65,9 @@ public TechnicianPage() {
         });
 
         // Adding buttons to the panel
-        panel.add(viewassignedtasksButton);
         panel.add(updateservicestatusButton);
         panel.add(viewservicehistoryButton);
-        panel.add(viewavailabilitystatusButton);
+        panel.add(viewBookingButton);
         panel.add(logoutButton); // Added logout button to the panel
 
         add(panel);
@@ -87,6 +77,42 @@ public TechnicianPage() {
     // Main method for testing
     public static void main(String[] args) {
         new TechnicianPage();
+    }
+    
+    class ViewBooking extends JFrame {
+    private JTextArea orderStatusTextArea;
+
+    public ViewBooking() {
+        setTitle("Booking Data");
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        setSize(500, 300);
+        setLocationRelativeTo(null);
+
+        orderStatusTextArea = new JTextArea();
+        orderStatusTextArea.setEditable(false);
+
+        JScrollPane scrollPane = new JScrollPane(orderStatusTextArea);
+        add(scrollPane);
+
+        displayBookingData();
+
+        setVisible(true);
+    }
+
+    private void displayBookingData() {
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader("booking_data.txt"));
+            String line;
+            StringBuilder bookingData = new StringBuilder();
+            while ((line = reader.readLine()) != null) {
+                bookingData.append(line).append("\n");
+            }
+            orderStatusTextArea.setText(bookingData.toString());
+            reader.close();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
     }
 }
    
