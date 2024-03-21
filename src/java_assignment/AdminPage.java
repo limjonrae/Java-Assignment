@@ -354,7 +354,7 @@ public class AdminPage extends JFrame {
     private JTextArea ViewFeedbackTextArea;
 
     public ViewFeedback() {
-        setTitle("Order Status");
+        setTitle("Feedback");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setSize(500, 300);
         setLocationRelativeTo(null);
