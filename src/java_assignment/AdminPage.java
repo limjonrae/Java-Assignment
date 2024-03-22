@@ -113,57 +113,6 @@ public class AdminPage extends JFrame {
         setVisible(true); // Set the frame visible
     }
 
-    // Method to read feedbacks from file and parse them into a list
-    private List<Feedback> getFeedbacksFromFile() throws IOException {
-        List<Feedback> feedbacks = new ArrayList<>();
-        try (BufferedReader reader = new BufferedReader(new FileReader("feedbacks.txt"))) {
-            String line;
-            String name = null;
-            String phoneNumber = null;
-            StringBuilder feedback = new StringBuilder();
-            while ((line = reader.readLine()) != null) {
-                // Check if line is empty, indicating the end of a feedback entry
-                if (line.isEmpty()) {
-                     // If name, phone number, and feedback are all not null and feedback content is not empty, add feedback to the list
-                    if (name != null && phoneNumber != null && !feedback.toString().isEmpty()) {
-                        feedbacks.add(new Feedback(name, phoneNumber, feedback.toString()));
-                         // Reset variables for the next feedback entry
-                        name = null;
-                        phoneNumber = null;
-                        feedback = new StringBuilder();
-                    }
-                } else {
-                    // Parse the line and assign to corresponding variables
-                    if (name == null) {
-                        name = line;
-                    } else if (phoneNumber == null) {
-                        phoneNumber = line;
-                    } else {
-                        feedback.append(line).append("\n");
-                    }
-                }
-            }
-            // Add the last feedback entry if it exists
-            if (name != null && phoneNumber != null && !feedback.toString().isEmpty()) {
-                feedbacks.add(new Feedback(name, phoneNumber, feedback.toString()));
-            }
-        }
-        return feedbacks;
-    }
-
-    // Method to display feedbacks using a dialog window
-    private void displayFeedbacks(List<Feedback> feedbacks) {
-        StringBuilder feedbackString = new StringBuilder();
-         // Construct a string containing details of each feedback
-        for (Feedback feedback : feedbacks) {
-            feedbackString.append("Name: ").append(feedback.getName()).append("\n");
-            feedbackString.append("Phone Number: ").append(feedback.getPhoneNumber()).append("\n");
-            feedbackString.append("Feedback: ").append(feedback.getFeedback()).append("\n\n");
-        }
-        // Show the feedbacks in a dialog window
-        JOptionPane.showMessageDialog(this, feedbackString.toString());
-    }
-
     // Inner class representing feedback data
     public static class Feedback {
         private String name;
