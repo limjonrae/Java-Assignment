@@ -38,35 +38,6 @@ Other Problems:
 Date: 3 May 2023
 Payment Method: Cash
 ---------------------------
-Customer: 
-Email: 
-Room Number: 
-Block: 
-Appointment Time: 
-Problem: 
-Other Problems: 
-Date: 1 January 2022
-Payment Method: Cash
----------------------------
-Customer: 
-Email: 
-Room Number: 
-Block: 
-Appointment Time: 
-Problem: 
-Other Problems: 
-Date: 1 January 2022
-Payment Method: Cash
----------------------------
-Customer: 
-Email: 
-Room Number: 
-Block: 
-Appointment Time: 
-Problem: 
-Other Problems: 
-Date: 1 January 2022
----------------------------
 Customer: jimmy
 Email: jimmy@gmail.com
 Room Number: 2
@@ -84,8 +55,7 @@ Appointment Time:
 Problem: Tables
 Other Problems: 
 Date: 1 January 2022
----------------------------
-Customer: 
+---------------------------Customer: 
 Email: 
 Room Number: 
 Block: 
@@ -93,5 +63,15 @@ Appointment Time:
 Problem: 
 Other Problems: 
 Date: 1 January 2022
+Payment Method: Cash
+---------------------------
+Customer: laura
+Email: laura@gmail.com
+Room Number: 33
+Block: 2
+Appointment Time: 12:00 PM
+Problem: Water Heater
+Other Problems: water does not heat up
+Date: 1 January 2023
 Payment Method: Cash
 ---------------------------

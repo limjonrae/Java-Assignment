@@ -76,7 +76,7 @@ public class UserPage extends JFrame {
 
 class FeedbackPage extends JFrame {
     private JPanel panel;
-    private JTextField techNameField;
+    private JTextField NameField;
     private JTextField emailField;
     private JLabel Rating;
     private JRadioButton Terrible;
@@ -98,7 +98,7 @@ class FeedbackPage extends JFrame {
 
         Font font = new Font("Courier New", Font.BOLD, 13);
 
-        createTechField(font);
+        createCustomerField(font);
         createratingField(font);
         createcommentField(font);
         createButtons(font);
@@ -106,17 +106,17 @@ class FeedbackPage extends JFrame {
         setVisible(true);
     }
     
-    private void createTechField(Font font) {
-        JLabel techLabel = new JLabel("Technician Name:");
-        JLabel emailLabel = new JLabel("Technician Email:");
-        techNameField = new JTextField();
-        techNameField.setColumns(15);
-        techNameField.setFont(font);
+    private void createCustomerField(Font font) {
+        JLabel nameLabel = new JLabel("Customer Name:");
+        JLabel emailLabel = new JLabel("Customer Email:");
+        NameField = new JTextField();
+        NameField.setColumns(15);
+        NameField.setFont(font);
         emailField = new JTextField();
         emailField.setColumns(15);
         emailField.setFont(font);
-        add(techLabel);
-        add(techNameField);
+        add(nameLabel);
+        add(NameField);
         add(emailLabel);
         add(emailField);
     }
@@ -163,7 +163,7 @@ class FeedbackPage extends JFrame {
     proceedButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
             
-            String technician = techNameField.getText();
+            String customer = NameField.getText();
                 String email = emailField.getText();
                 String Rating = "";
                 if (Terrible.isSelected()) {
@@ -179,7 +179,7 @@ class FeedbackPage extends JFrame {
                 }
                 String comment = commentText.getText();
                 
-                saveFeedback(technician, email, Rating, comment);
+                saveFeedback(customer, email, Rating, comment);
                 JOptionPane.showMessageDialog(null, "Feedback submitted successfully!");
                 }
         });
@@ -188,11 +188,11 @@ class FeedbackPage extends JFrame {
         add(proceedButton);
     }
 
-                private void saveFeedback(String technician, String email, String Rating, String comment) {
+                private void saveFeedback(String customer, String email, String Rating, String comment) {
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter("feedbacks.txt", true));
             // Append data to the text file
-            writer.write("Name: " + technician + "\n");
+            writer.write("Name: " + customer + "\n");
             writer.write("Email: " + email + "\n");
             writer.write("Rating: " + Rating + "\n");
             writer.write("Feedback: " + comment + "\n");
