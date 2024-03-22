@@ -75,3 +75,13 @@ Other Problems: water does not heat up
 Date: 1 January 2023
 Payment Method: Cash
 ---------------------------
+Customer: bob
+Email: bob@gmail.com
+Room Number: 22
+Block: 2
+Appointment Time: 12:00 PM
+Problem: Tables
+Other Problems: 
+Date: 1 January 2022
+Payment Method: Cash
+---------------------------
